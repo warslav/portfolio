@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Slav</title>
+    <title>Slav`s Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -47,47 +47,37 @@
             <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" href="https://twitter.com/anekdotru">Twitter</a>
                 <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-                <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+                <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
             </div>
         </div>
     </nav>
 </header>
 
 <main role="main">
-
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">Hi I`m Slav.</h1>
-            <p class="lead text-muted">Hey, my name is Slav and I love to make Django websites.
-                It`s the thrill of handling the request that the people want!</p>
-            <p>
-                <a href="mailto:sl-aj@yandex.ua" class="btn btn-primary my-2">Email me</a>
-            </p>
-            <img src="{% static 'foto.jpg' %}" height="300" alt="">
-        </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-
-            <div class="row">
-
-                {% for job in jobs.all %}
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top" src="{{ job.image.url }}" alt="">
-                        <div class="card-body">
-                            <p class="card-text">{{ job.summary }}</p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-
-            </div>
-        </div>
+    <div class="container">
+        <h1 class="text-center pt-3">Welcome to Slav Blog</h1>
+        <br><br>
+        <h2>Latest Posts</h2>
+        <hr>
     </div>
-
 </main>
+
+<div class="container">
+
+    <div class="row">
+
+        {% for blog in blogs.all %}
+            <div class="col-md-12">
+                <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+                <p>{{ blog.pup_date_pretty }}</p>
+                <img class="img-fluid" height="200" width="200" src="{{ blog.image.url }}" alt="">
+                <p>{{ blog.summary }}</p>
+                <br>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
 
 <footer class="text-muted">
     <div class="container text-center">
